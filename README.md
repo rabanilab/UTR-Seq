@@ -14,7 +14,7 @@ Mol Cell. 2018 May 3;70(3):565.
 ## Installation
 
 These instructions will get you a copy of the UTR-Seq analysis software 
-to use on your with Matlab local machine for development and testing purposes. 
+to use on your with Matlab local machine. 
 
 ### Prerequisites
 
