@@ -4,7 +4,8 @@ UTR-Seq is a Matlab package designed for identifying short sequence elements
 that are involved in controling the stability of RNA transcripts from data 
 collected in Massively Parallel Reporter Assays (MPRA). 
 
-UTR-Seq is described in:
+You can find the full method description in:
+
 [A Massively Parallel Reporter Assay of 3' UTR Sequences Identifies In Vivo
 Rules for mRNA Degradation](https://www.ncbi.nlm.nih.gov/pubmed/29727622).
 Rabani M, Pieper L, Chew GL, Schier AF.
