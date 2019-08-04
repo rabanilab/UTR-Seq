@@ -24,10 +24,10 @@ installed from [Mathworks](https://www.mathworks.com/products/matlab.html).
 ### Installing
 
 The package source code is downloaded from GitHub. Unzip the package into a
-directory of your choise.
+directory of your choise (this will be the installation directory).
 
 ```
-unzip package.zip
+unzip UTR-Seq-master.zip
 ```
 
 Import the intstallation directory into matlab, by running (in Matlab):
