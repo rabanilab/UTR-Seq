@@ -198,7 +198,7 @@ if (~exist(wfile,'file'))
     ymax = ceil(10*max(abs([W{:}])))/10;
     for j = 1:max(size(id))
         clf;
-        plot_weights(seq{j},W{j},regexprep(id{j},'_',' '),DG(j),ymax);
+        plot_weights(seq{j},W{j},regexprep(id{j},'_',' '),S(j),ymax);
         saveas(h, [plot_dir '/' id{j} '.jpg'],'jpg');
     end
     close all;
@@ -289,7 +289,7 @@ Xid = regexprep(Xid,':0',':N');
 Xid = [Xid;'NA:N';'NA:P'];
 
 if (size(modelW,1)>10)
-    N = norm_weights(modelW);
+    N = kmer_norm_weights(modelW);
 else
     N = modelW;
 end
@@ -346,35 +346,6 @@ if (~isempty(W))
         end
     end
 end
-
-
-function N = norm_weights(W)
-
-bgD = 0.2;
-
-% calculate positional normalization factors
-x1 = W;
-x1(W<0) = 0;
-bg1 = sum(abs(x1),1);
-bg1 = bg1./median(bg1);
-bg1(abs(bg1-1)<bgD) = 1;
-bg1(bg1<1) = 1;
-
-x2 = W;
-x2(W>0) = 0;
-bg2 = sum(abs(x2),1);
-bg2 = bg2./median(bg2);
-bg2(abs(bg2-1)<bgD) = 1;
-bg2(bg2<1) = 1;
-
-b1 = repmat(bg1,size(W,1),1);
-b2 = repmat(bg2,size(W,1),1);
-BG = zeros(size(W));
-BG(W>0) = b1(W>0);
-BG(W<0) = b2(W<0);
-
-N = W./BG;
-N(isnan(N)) = 0;
 
 
 function [D1,h,p] = sequence_to_deg(ids, model_file, kmer_file_pref, normbylen, setbounds)

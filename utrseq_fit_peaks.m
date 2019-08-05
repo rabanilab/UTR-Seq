@@ -50,16 +50,18 @@ if (exist(weights_file,'file') ~= 2)
     W = kmer_positional_weights(ids,sequences,model_file);
     save(weights_file,'ids','W');
     fprintf('Done\n\n');
+else
+    load(weights_file,'W');
 end
 
 % find regression peaks
 fprintf('searching regression peaks ... \n');
 peak_file = [result_dir '/peaks.mat'];
 if (exist(peak_file, 'file') ~= 2)
-    [Z,Zu,Zw,Q,PWM,Mw,Tw] = fit_peaks(ids,sequences,weights_file,result_dir);
+    [Z,Zu,Zw,Q,PWM,Mw,Tw] = fit_peaks(ids,sequences,W,result_dir);
     save(peak_file,'Z','Zu','Zw','Q','PWM','Mw','Tw');
 else
-    load(peak_file,'Z','Zu','Zw','Q','PWM','Mw','Tw');
+    load(peak_file,'Q','PWM');
 end
 fprintf('Done\n\n');
 
@@ -106,7 +108,7 @@ if (~isempty(IDs))
 end
 
 
-function [Z,Zu,Zw,Q,PWM,Mweight,Tweight] = fit_peaks(id,idseq,weight_file,result_dir)
+function [Z,Zu,Zw,Q,PWM,Mweight,Tweight] = fit_peaks(id,idseq,W,result_dir)
 % Q = [consensus] [number of peaks] [POS/NEG]
 % PWM = position weight matrix per peak motif
 
@@ -115,9 +117,9 @@ peak_prctile = 99;
 maxf = 0.01;
 
 % positional weights
-[~,w,wn] = kmer_positional_weights_load(id,weight_file,10);
-Mweight = max(max(abs(wn)));
-wnn = wn./Mweight;
+Wn = kmer_norm_weights(W);
+Mweight = max(max(abs(Wn)));
+wnn = Wn./Mweight;
 
 % calculate thresholds for peak selection
 xj = abs(wnn(:,sum(abs(wnn),1)>0));

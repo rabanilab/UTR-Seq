@@ -65,7 +65,7 @@ function utrseq_fit_all(STEP, seq_file_name, data_file_name, tm, result_base)
 % ---------------
 if (STEP > 0)
     output_dir = [result_base 'fit_degradation'];
-    run_fit_degradation_model(tm, data_file_name, output_dir);
+    utrseq_fit_deg_rates(tm, data_file_name, output_dir);
 end
 
 % ---------------
@@ -77,9 +77,9 @@ end
 %  2. <result_base>_kmer_regression/run_linear.out.mat (linear fit regression model)
 % ---------------
 if (STEP > 1)
-    input_file = [result_base '_fit_degradation/degradation.fit.mat'];
-    output_dir = [result_base '_kmer_regression'];
-    run_fit_kmer_regression(input_file, seq_file_name, output_dir);
+    input_file = [result_base 'fit_degradation/degradation.fit.mat'];
+    output_dir = [result_base 'kmer_regression'];
+    utrseq_fit_kmer_regression(input_file, seq_file_name, output_dir);
 end
 
 % ---------------
@@ -91,7 +91,7 @@ end
 %  3. <result_base>_fit_peaks/peaks.a.txt (all peaks, with scores)
 % ---------------
 if (STEP > 2)
-    model_file = [result_base '_kmer_regression/run_linear.out.mat'];
-    output_dir = [result_base '_fit_peaks'];
-    run_fit_regression_peaks(model_file, seq_file_name, output_dir);
+    model_file = [result_base 'kmer_regression/run_linear.out.mat'];
+    output_dir = [result_base 'fit_peaks'];
+    utrseq_fit_peaks(model_file, seq_file_name, output_dir);
 end
