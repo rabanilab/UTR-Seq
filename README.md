@@ -1,8 +1,10 @@
 # UTR-Seq
 
-UTR-Seq is a Matlab package designed for identifying short sequence elements
-that are involved in controling the stability of RNA transcripts from data 
-collected in Massively Parallel Reporter Assays (MPRA). 
+UTR-Seq is a Matlab package for identifying short sequence elements
+that regulate the stability of RNA transcripts.
+It is designed to work on data that was collected by Massively Parallel
+Reporter Assays (MPRA) in order to define the elements. The resulting
+model can then apply to any input sequence of choice.
 
 You can find the full method description in:
 
@@ -18,7 +20,7 @@ to use with Matlab on your local machine.
 
 ### Prerequisites
 
-UTR-Seq was written and tested with Matlab R2018b. Matlab can be obtained and
+We developed and tested UTR-Seq with Matlab R2018b. Matlab can be obtained and
 installed from [Mathworks](https://www.mathworks.com/products/matlab.html).
 
 ### Installing
@@ -44,7 +46,8 @@ installation directory (see example below).
 
 ## Example data
 
-The package that you downloaded includes an example for using the UTR-Seq package.
+The package that you downloaded includes an example for using with the
+UTR-Seq package.
 
 There are 4 files in the example directory: a set of reporter sequences, RNA-Seq
 counts for those reporters, a set of test sequences and a test of background
@@ -53,16 +56,17 @@ sequences:
 ```
 example/reporter_counts.txt
 example/reporter_seq.txt
-example/bg_seq.txt
 example/test_seq.txt
+example/bg_seq.txt
 ```
 
-We will apply two analysis steps to this data: first, we will fit a model to
-the reporter data, and second, we will use this model to predict sequence
-elements (motifs) that affect the stability of the test sequences.
+In the example, we will apply two analysis steps to this data:
+first, we will fit a new model by using the reporter data,
+and second, we will use this model to predict sequence
+elements (motifs) in the set of test sequences.
 
 
-### Step 1: fitting model on training set
+### Step 1: fitting a model on the training set
 
 In matlab, browse to the installation directory. Then run:
 
@@ -72,13 +76,16 @@ utrseq_fit_all(3, 'example/reporter_seq.txt', 'example/reporter_counts.txt',
 [0 1 2 3 4 5 6 7 8 10 12], 'example/reporter_');
 ```
 
-This will run all 3 steps of optimization, and place the results in the example
-directory.
+This will run all 3 steps of optimization, and will place the results
+in the example directory.
 
-### Running on test set
+Note that some of the optimization steps can take a long time
+(up to several hours) to complete.
+
+### Step 2: predicting motifs in the test set
 
 After optimizing the model on the training set, you can test its predictions
-on a new set of sequences (test set).
+on a new set of sequences (the test set).
 To do that, in matlab, browse to the same installation directory. Then run:
 
 ```
@@ -88,7 +95,7 @@ utrseq_predict_all('example/test_seq.txt', 'example/bg_seq.txt', ...
 'example/repoters_fit_peaks/peaks.mat', 'example/test_');
 ```
 
-This will run all 2 steps of predictions, and place the results in the example
+This will run 2 steps of predictions, and place the results in the example
 directory.
 
 
