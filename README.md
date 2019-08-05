@@ -91,8 +91,8 @@ To do that, in matlab, browse to the same installation directory. Then run:
 ```
 cd <installation directory>;
 utrseq_predict_all(2, 'example/test_seq.txt', 'example/bg_seq.txt', ...
-'example/repoter_kmer_regression/run_linear.out.mat', ...
-'example/repoter_fit_peaks/peaks.mat', 'example/test_');
+'example/reporter_kmer_regression/run_linear.out.mat', ...
+'example/reporter_fit_peaks/peaks.mat', 'example/test_');
 ```
 
 This will run 2 steps of predictions, and place the results in the example
