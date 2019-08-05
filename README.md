@@ -14,17 +14,20 @@ Mol Cell. 2018 May 3;70(3):565.
 ## Installation
 
 These instructions will get you a copy of the UTR-Seq analysis software 
-to use on your with Matlab local machine. 
+to use with Matlab on your local machine. 
 
 ### Prerequisites
 
-UTR-Seq was written and tested for Matlab R2018b. Matlab can be obtained and
+UTR-Seq was written and tested with Matlab R2018b. Matlab can be obtained and
 installed from [Mathworks](https://www.mathworks.com/products/matlab.html).
 
 ### Installing
 
-The package source code is downloaded from GitHub. Unzip the package into a
-directory of your choise (this will be the installation directory).
+Determine in which directory you would like to install the package. 
+This will be the installation directory.
+
+Download the package source code from GitHub. Copy the zip file into the
+installation directory, and unzip the package.
 
 ```
 unzip UTR-Seq-master.zip
@@ -33,16 +36,19 @@ unzip UTR-Seq-master.zip
 Import the intstallation directory into matlab, by running (in Matlab):
 
 ```
-addpath <installation path>
+addpath <path to installation directory>;
 ```
 
-Now you can run all the commands in the installation directory (see example
-below).
+Now you can run in matlab all the source code that is saved in the 
+installation directory (see example below).
 
 ## Example data
 
-The downloaded package includes an example of reporter sequences and RNA-Seq
-counts that can be used for running and testing:
+The package that you downloaded includes an example for using the UTR-Seq package.
+
+There are 4 files in the example directory: a set of reporter sequences, RNA-Seq
+counts for those reporters, a set of test sequences and a test of background
+sequences:
 
 ```
 example/reporter_counts.txt
@@ -51,7 +57,12 @@ example/bg_seq.txt
 example/test_seq.txt
 ```
 
-### Fitting model on training set
+We will apply two analysis steps to this data: first, we will fit a model to
+the reporter data, and second, we will use this model to predict sequence
+elements (motifs) that affect the stability of the test sequences.
+
+
+### Step 1: fitting model on training set
 
 In matlab, browse to the installation directory. Then run:
 
