@@ -105,11 +105,8 @@ end
 kmer_files = cellstr(strcat([kmer_dir '/counts.'], num2str((minK:maxK)')));
 for i = 1:max(size(kmer_files))
     k = i + minK - 1;
-    if (exist([kmer_files{i} '.txt'], 'file') ~= 2)
-        system(['./extract_kmer_counts.pl ' seq_file_name ' -k ' num2str(k) ' > ' kmer_files{i} '.txt;']);
-    end        
     if (exist([kmer_files{i} '.mat'], 'file') ~= 2)
-        kmer_data_load_file(id,kmer_files{i});
+        extract_kmer_counts(k,seq_file_name,kmer_files{i});
     end
 end
 fprintf('Done\n\n');
@@ -164,11 +161,8 @@ end
 kmer_files = cellstr(strcat([kmer_dir '/counts.'], num2str((minK:maxK)')));
 for i = 1:max(size(kmer_files))
     k = i + minK - 1;
-    if (exist([kmer_files{i} '.txt'], 'file') ~= 2)
-        system(['./extract_kmer_counts.pl ' seq_file_name ' -k ' num2str(k) ' > ' kmer_files{i} '.txt;']);
-    end        
     if (exist([kmer_files{i} '.mat'], 'file') ~= 2)
-        kmer_data_load_file(id,kmer_files{i});
+        extract_kmer_counts(k,seq_file_name,kmer_files{i});
     end
 end
 fprintf('Done\n\n');
