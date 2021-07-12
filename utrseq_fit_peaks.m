@@ -66,7 +66,7 @@ end
 fprintf('Done\n\n');
 
 % peak logos
-system(['rm -rf ' result_dir '/peaks.logo.*']);
+delete([result_dir '/peaks.logo.*']);
 for j = 1:max(size(PWM))
     fprintf('%s\n',Q{j,1});
     if (Q{j,3}>0)

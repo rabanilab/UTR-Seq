@@ -188,7 +188,7 @@ if (~exist(wfile,'file'))
     h = figure;
     scrsz = get(0,'ScreenSize');
     set(h, 'OuterPosition',[1 scrsz(4) scrsz(3) scrsz(4)]);
-    system(['rm -rf ' plot_dir '/*.jpg']);
+    delete([plot_dir '/*.jpg']);
     ymax = ceil(10*max(abs([W{:}])))/10;
     for j = 1:max(size(id))
         clf;
