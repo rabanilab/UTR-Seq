@@ -185,7 +185,7 @@ for j = 1:size(feature_files,1)
     Kjcol = Kjcol(x);
     Kj = Kj(:,x);
     
-    if ((max(size(Kjcol)) ~= max(size(idx))) || (sum(strcmp(Kjcol',idx))<max(size(idx))))
+    if ((max(size(Kjcol)) ~= max(size(idx))) || (sum(strcmp(Kjcol,idx))<max(size(idx))))
         fprintf('error loading kmer file %s\n', feature_files{j,1});
     else
         K = [K; Kj];
